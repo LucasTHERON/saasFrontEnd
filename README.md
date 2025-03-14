@@ -1,5 +1,5 @@
-# Vue 3 + Vite
+# Vue 3 Saas Frontend
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+The frontend of a SAAS I am currently developping in VueJS
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+This repository is here to store my project, even at a very early stage The backend is coded in Django, but I won't upload it especially in developpement as it could show some security issues or sensitive data
