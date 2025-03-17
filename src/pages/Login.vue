@@ -1,21 +1,6 @@
 <template>
-<div class = "login" >
-    <h1> Login </h1> 
-    <form @submit.prevent = "login" >
-        <div>
-            <label for = "email" > Email: </label> 
-            <input v-model="email" id = "email" type = "text" required>
-        </div> 
-        <div>
-            <label for = "password" > Password: </label>
-            <input v-model="password" id = "password" type = "password" required>
-        </div> 
-        <button type="submit" > Login </button> 
-    </form>
-    <p v-if="error" class="error">{{ error }}</p> 
-</div>
 
-<div v-if="forceBrutLevel << 15">
+<div v-if="forceBrutLevel < 15">
     <h2>Login</h2> 
     <div style="margin: auto; width: 360px;" class="card flex justify-center">
         <Toast />

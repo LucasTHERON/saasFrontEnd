@@ -1,62 +1,85 @@
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '../store/auth.js'
 import Menubar from 'primevue/menubar';
 
-const route = useRoute();
-const pageName = route.name;
-console.log(route)
-console.log("page name is " + route.name)
-console.log("page name is " + pageName)
+const authStore = useAuthStore()
+const router = useRouter()
 
-const items = ref([
-    {
-        label: 'Home',
-        icon: 'pi pi-home',
-        url: '###'
-    },
-    {
-        label: 'Features',
-        icon: 'pi pi-star'
-    },
-    {
-        label: 'Projects',
-        icon: 'pi pi-search',
-        items: [
-            {
-                label: 'Components',
-                icon: 'pi pi-bolt'
-            },
-            {
-                label: 'Blocks',
-                icon: 'pi pi-server'
-            },
-            {
-                label: 'UI Kit',
-                icon: 'pi pi-pencil'
-            },
-            {
-                label: 'Templates',
-                icon: 'pi pi-palette',
-                items: [
-                    {
-                        label: 'Apollo',
-                        icon: 'pi pi-palette'
-                    },
-                    {
-                        label: 'Ultima',
-                        icon: 'pi pi-palette'
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        label: 'Contact',
-        icon: 'pi pi-envelope'
+async function logout() {
+    try {
+        await authStore.logout(router)
+    } catch (error) {
+        console.error(error)
     }
-]);
+}
 
+let items = ref([])
+
+if(authStore.isAuthenticated){
+    items = [
+        {
+            label: 'Home',
+            icon: 'pi pi-home',
+            url: '/'
+        },
+        {
+            label: 'Projects',
+            icon: 'pi pi-folder',
+            url: '/dashboard', 
+            items: [
+                {
+                    label: 'Dashboard',
+                    icon: 'pi pi-list',
+                    url: '/dashboard'
+                },
+                {
+                    label: 'Add',
+                    icon: 'pi pi-folder-plus',
+                    url: '/project/add'
+                },
+            ]
+        },
+        {
+            label: 'Data',
+            icon: 'pi pi-chart-bar',
+            url: '###'
+        },
+        {
+            label: 'Signout',
+            icon: 'pi pi-sign-out',
+            url: '/login'
+        },
+        {
+            label: 'Contact',
+            icon: 'pi pi-envelope'
+        }
+    ];
+}else{
+    items = [
+        {
+            label: 'Home',
+            icon: 'pi pi-home',
+            url: '/'
+        },
+        {
+            label: 'Login',
+            icon: 'pi pi-sign-in',
+            url: '/login'
+        },
+        {
+            label: 'Register',
+            icon: 'pi pi-star',
+            url: '/register'
+        },
+        {
+            label: 'Contact',
+            icon: 'pi pi-envelope',
+            url: '/contact'
+        }
+    ];
+}
 
 
 
@@ -65,16 +88,6 @@ const items = ref([
 <template>
 
   <Menubar :model="items" />
-  <h1>Vous êtes sur la page {{ pageName }}</h1>
-
-  <div class="nav">
-      <p><a href="/">Home</a></p>
-      <p><a href="/register">Register</a></p>
-      <p><a href="/login">Login</a></p>
-      <p><a href="/dashboard">Dashboard</a></p>
-      <p><a href="/project/add">Add project</a></p>
-      <p> <a @click ="logout">Logout</a></p>
-  </div>
 
 </template>
 

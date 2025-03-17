@@ -136,77 +136,29 @@ export default {
     },
     mounted() {
         this.extractedData = 
-            {"voitures": [
-                    {
-                    "marque": "Toyota",
-                    "modele": "Camry",
-                    "annee": 2022,
-                    "caracteristiques": {
-                        "moteur": {
-                        "type": "Essence",
-                        "cylindree": "2.5L",
-                        "puissance": "203 ch"
-                        },
-                        "transmission": {
-                        "type": "Automatique",
-                        "vitesses": 8,
-                        "traction": "Avant"
-                        },
-                        "dimensions": {
-                        "longueur": "4885 mm",
-                        "largeur": "1840 mm",
-                        "hauteur": "1445 mm"
-                        },
-                        "options": ["Climatisation", "Régulateur de vitesse", "Sièges chauffants"]
-                    }
-                    },
-                    {
-                    "marque": "Tesla",
-                    "modele": "Model 3",
-                    "annee": 2023,
-                    "caracteristiques": {
-                        "moteur": {
-                        "type": "Electrique",
-                        "batterie": "75 kWh",
-                        "autonomie": "576 km"
-                        },
-                        "transmission": {
-                        "type": "Automatique",
-                        "traction": "Arrière ou Intégrale"
-                        },
-                        "dimensions": {
-                        "longueur": "4694 mm",
-                        "largeur": "1849 mm",
-                        "hauteur": "1443 mm"
-                        },
-                        "options": ["Pilote automatique", "Toit panoramique", "Ecran tactile 15 pouces"]
-                    }
-                    },
-                    {
-                    "marque": "Ford",
-                    "modele": "Mustang",
-                    "annee": 2021,
-                    "caracteristiques": {
-                        "moteur": {
-                        "type": "Essence",
-                        "cylindree": "5.0L V8",
-                        "puissance": "460 ch"
-                        },
-                        "transmission": {
-                        "type": "Manuelle ou Automatique",
-                        "vitesses": 6,
-                        "traction": "Arrière"
-                        },
-                        "dimensions": {
-                        "longueur": "4784 mm",
-                        "largeur": "1916 mm",
-                        "hauteur": "1394 mm"
-                        },
-                        "options": ["Sièges en cuir", "Système audio premium", "Suspension sport"]
-                    }
-                    }
-                ]
-            }
+            [
+                {
+                    "contrat": "colocation meublée",
+                    "bailleur_nom": "",
+                    "bailleur_prenom": "",
+                    "bailleur_adresse": "Pessac",
+                    "bailleur_email": "",
+                    "colocataire_nom": "",
+                    "colocataire_prenom": "",
+                    "colocataire_email": "",
+                    "garant_nom": "Néant",
+                    "logement_consistance": "Chambre privative de 12 m2 à l'étage d’une Maison Individuelle de 110 m2",
+                    "logement_adresse": "PESSAC",
+                    "logement_autres_parties": ["1 terrasse", "jardin"],
+                    "equipements": ["cuisine équipée", "Salles d’eau équipées", "1 toilette indépendante", "salon de jardin", "table", "six chaises"],
+                    "chauffage": "individuel électrique",
+                    "eau_chaude": "Ballon Thermodynamique",
+                    "destination_locaux": "Usage habitation uniquement pour résidence principale",
+                    "annexes": "Local destiné uniquement aux vélos",
+                    "stationnement": "véhicules autorisées sur les aires destinées à cet effet",
+                    "technologie_acces": ["wifi", "box Fibre orange", "raccordement TV"]
+                }
+            ]
 
     }
 }

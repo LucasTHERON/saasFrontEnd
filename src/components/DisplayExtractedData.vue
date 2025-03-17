@@ -3,8 +3,8 @@ import { computed, ref, watch } from 'vue'
 
 
 export default {
-    props : {
-        extractedData: Object
+    props: {
+        extractedData: Array
     },
     data(){
         return{
@@ -20,7 +20,18 @@ export default {
     setup(){
     },
     methods: {
-        setNodeDepth(object, depth=1){
+        displayExtractedData(){
+            console.log(this.extractedData)
+            console.log("_____")
+            this.extractedData.forEach( obj => {
+                console.log(obj)
+                for (const [key, value] of Object.entries(obj)) {
+                    console.log(`${key}: ${value}`);
+                }
+            })
+        },
+
+        ZsetNodeDepth(object, depth=1){
             for(let key in object){
                 if(depth > this.dataDepth){ 
                     this.dataDepth = depth; 
@@ -34,7 +45,7 @@ export default {
                 }
             }
         },
-        prepareExtractedData(object, depth=1){
+        ZprepareExtractedData(object, depth=1){
             for(let key in object){
                 if (object.hasOwnProperty(key)) {
                     let element = object[key];
@@ -60,7 +71,7 @@ export default {
                 }
             }
         },
-        displayExtractedData(){
+        ZdisplayExtractedData(){
             const extractedDataDiv = document.querySelector("#extractedData")
             const gridContainer = document.createElement('div')
             console.log('On doit boucler sur ' + this.dataDepth + ' en horizontal et ' + this.dataIndex + ' en vertical')
@@ -92,7 +103,7 @@ export default {
             }
 
         },
-        setEvents(){
+        ZsetEvents(){
             let inputs = document.querySelectorAll('#extractedData .hasData');
             inputs.forEach(el => {
                 el.addEventListener("dblclick", () => { 
@@ -107,10 +118,11 @@ export default {
     },
     mounted() {
         if(this.extractedData){
-            this.prepareExtractedData(this.extractedData)
-            this.setNodeDepth(this.extractedData)
-            this.displayExtractedData()
-            this.setEvents()
+            // this.prepareExtractedData(this.extractedData)
+            // this.setNodeDepth(this.extractedData)
+            // this.displayExtractedData()
+            // this.setEvents()
+            console.log(this.extractedData)
         }
     }
 }
@@ -119,8 +131,9 @@ export default {
 <template>
 
 <div style="border: 1px solid grey; padding: 20px 30px;">
+    <button @click="displayExtractedData">Log extracted data</button>
     <div id="extractedData"></div>
-
+    
 
     <p v-if="success">
         {{ success }}

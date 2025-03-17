@@ -63,7 +63,7 @@ export default {
     <p> Get project list </p>
     <button @click ="getProjectList">Get List</button>
     <div v-for="(project, index) in projects">
-        <h2>{{ project.name }}</h2>
+        <h2>{{ project.name }} from {{ project.owner }}</h2>
         <p>{{ project.description }}</p>
         <p>Index : {{ index }}</p>
         <p>Slug : {{ project.slug }}</p>
