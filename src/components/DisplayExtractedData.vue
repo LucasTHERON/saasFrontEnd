@@ -1,10 +1,20 @@
 <script>
 import { computed, ref, watch } from 'vue'
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';   // optional
+import Row from 'primevue/row';                   // optional
 
 
 export default {
+    components: {
+        DataTable,
+        Column,
+        ColumnGroup,
+        Row
+    },
     props: {
-        extractedData: Array
+        extractedData: null
     },
     data(){
         return{
@@ -20,110 +30,67 @@ export default {
     setup(){
     },
     methods: {
-        displayExtractedData(){
+        prepareData(){
+            this.extractedData.forEach( obj => {
+                let array = []
+                for (const [key, value] of Object.entries(obj)) {
+                    //name value type count
+                    let newObject = {}
+                    newObject.key = key;
+                
+                    console.log("pour " + key)
+                    if(value && value.length >> 0){
+                        console.log("value : " + value)
+                        newObject.value = value
+                    }else{
+                        newObject.value = "-"
+                    }
+                    newObject.type = typeof(value);
+                    newObject.count = 0;
+                    array.push(newObject)
+                    console.log(newObject)
+                    // console.log("name : " + key)
+                    // console.log("value : " + value.toString())
+                    // console.log("type : " + typeof(value))
+                    // if(typeof(value) == "Array"){
+                    //    console.log("count : " + value.length)
+                    // }else{
+                    //    console.log("count : 1")
+                    // }
+                }
+                this.dataArray.push(array)
+            })
+            console.log(this.dataArray)
+        },
+        logExtractedData(){
             console.log(this.extractedData)
             console.log("_____")
-            this.extractedData.forEach( obj => {
-                console.log(obj)
-                for (const [key, value] of Object.entries(obj)) {
-                    console.log(`${key}: ${value}`);
-                }
-            })
+    
+            console.log(this.dataArray)
+        },
+        displayExtractedData(){
+            const extractedDataDiv = document.querySelector("#extractedData");
         },
 
-        ZsetNodeDepth(object, depth=1){
-            for(let key in object){
-                if(depth > this.dataDepth){ 
-                    this.dataDepth = depth; 
-                    }
-                if (object.hasOwnProperty(key)) {
-                    let element = object[key];
-                    let type = typeof (element);
-                    if (type === 'object') {
-                        this.setNodeDepth(element, depth + 1);
-                    }
-                }
-            }
-        },
-        ZprepareExtractedData(object, depth=1){
-            for(let key in object){
-                if (object.hasOwnProperty(key)) {
-                    let element = object[key];
-                    let type = typeof (element);
-                    this.dataIndex++
-                    this.dataArray.push({
-                        value: key,
-                        class: 'key',
-                        x: depth,
-                        y: this.dataIndex
-                    }) 
-
-                    if (type === 'object') {
-                        this.prepareExtractedData(element, depth + 1);
-                    }else{
-                        this.dataArray.push({
-                            value: element,
-                            class: 'value',
-                            x: depth + 1,
-                            y: this.dataIndex
-                        }) 
-                    }
-                }
-            }
-        },
-        ZdisplayExtractedData(){
-            const extractedDataDiv = document.querySelector("#extractedData")
-            const gridContainer = document.createElement('div')
-            console.log('On doit boucler sur ' + this.dataDepth + ' en horizontal et ' + this.dataIndex + ' en vertical')
-            gridContainer.classList.add('wrapper')
-            gridContainer.style.display = "grid"
-            gridContainer.style.gridTemplateColumns = "repeat(" + this.dataDepth + ")";
-            gridContainer.style.gridGap = "1px 3px"
-
-            for(let y = 1; y <= this.dataIndex; y++){
-                for(let x = 1; x <= this.dataDepth + 1; x++){
-                    let div = document.createElement('div');
-                    div.classList.add('cell');
-                    div.style.gridColumn = x
-                    div.classList.add('col' + x);
-                    div.style.gridRow = y
-                    div.classList.add('row' + y);
-                    gridContainer.appendChild(div)
-                }
-            }
-            
-            extractedDataDiv.appendChild(gridContainer)
-            
-            for(let key in this.dataArray){
-                let el = this.dataArray[key]
-                let cell = document.querySelector('.row' + el.y + '.col' + el.x)
-                cell.classList.add('hasData')
-                cell.classList.add(el.class)
-                cell.textContent = el.value;
-            }
-
-        },
-        ZsetEvents(){
-            let inputs = document.querySelectorAll('#extractedData .hasData');
-            inputs.forEach(el => {
-                el.addEventListener("dblclick", () => { 
-                    console.log(el)
-                    const input = document.createElement("input")
-                    input.value = el.textContent
-                    input.classList.add('updateDataInput')
-                    el.appendChild(input)
-                });
-            })
-        }
     },
     mounted() {
-        if(this.extractedData){
-            // this.prepareExtractedData(this.extractedData)
-            // this.setNodeDepth(this.extractedData)
-            // this.displayExtractedData()
-            // this.setEvents()
-            console.log(this.extractedData)
-        }
+        this.prepareData()
+        // this.setEvents()
+
+            // <DataTable :value="customers" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem"
+            //         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+            //         currentPageReportTemplate="{first} to {last} of {totalRecords}">
+            //     <template #paginatorstart>
+            //         <Button type="button" icon="pi pi-refresh" text />
+            //     </template>
+            //     <template #paginatorend>
+            //         <Button type="button" icon="pi pi-download" text />
+            //     </template>
+            //     <Column field="name" header="Name" style="width: 25%"></Column>
+            //     <Column field="country.name" header="Country" style="width: 25%"></Column>
+            //     <Column field="company" header="Company" style="width: 25%"></Column>
+            //     <Column field="representative.name" header="Representative" style="width: 25%"></Column>
+            // </DataTable>
     }
 }
 </script>
@@ -131,9 +98,16 @@ export default {
 <template>
 
 <div style="border: 1px solid grey; padding: 20px 30px;">
-    <button @click="displayExtractedData">Log extracted data</button>
-    <div id="extractedData"></div>
-    
+    <button @click="logExtractedData">Log extracted data</button>
+
+    <div v-for="object in dataArray" class="card">
+        <DataTable size="small" :value="object" tableStyle="min-width: 50rem" showGridlines >
+            <Column field="key" header="Name"></Column>
+            <Column field="value" header="Value"></Column>
+            <Column field="type" header="Type"></Column>
+            <Column field="count" header="Count"></Column>
+        </DataTable>
+    </div>
 
     <p v-if="success">
         {{ success }}
@@ -206,5 +180,9 @@ export default {
 
 .uploadSection .p-fileupload-content{
     min-height: 450px;
+}
+
+tbody td {
+    padding: 2px 8px !important;
 }
 </style>

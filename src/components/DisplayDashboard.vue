@@ -39,7 +39,8 @@ export default {
         goToProject(row){
             console.log("dblclick")
             let slug = row.data.slug
-            this.$router.push('/dashboard')
+            console.log('go to ' + slug)
+            this.$router.push('/project?id=' + slug)
         }
     },
     mounted(){
@@ -61,11 +62,10 @@ selectionMode="single"
 tableStyle="min-width: 50rem"
 @row-click="foo"
 @row-dblclick="goToProject"
-
 >
-    <Column filed="id" header=""></Column>
-    <Column field="name" header="Name"></Column>
-    <Column field="created" header="Created"></Column>
+    <Column filed="id" header="" sortable></Column>
+    <Column field="name" header="Name" sortable></Column>
+    <Column field="created" header="Created" sortable></Column>
     <Column field="description" header="Description"></Column>
     <Column field="quantity" header="Icons"></Column>
 </DataTable>

@@ -173,7 +173,7 @@ export default {
         <button style="background: salmon" @click="deleteProject">Delete project</button> | 
         <button style="background: lightgreen" @click="updateProject">Update project</button>
         <br><br><br>
-        <a :href="'/project/data?id='+ projectData.slug">Project's data</a> | <a :href="'project/file/add?id='+ projectData.slug">Add data</a>
+        <a :href="'/project/data?id='+ projectData.slug">Project's data</a> | <a :href="'project/file/data?id='+ projectData.slug">Add data</a>
         <hr>
 
         <!-- DISPLAY FILE LIST -->

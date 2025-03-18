@@ -4,8 +4,9 @@ import Home from './pages/Home.vue'
 import Login from './pages/Login.vue'
 import Register from './pages/Register.vue'
 
-import AddProject from './pages/project/AddProject.vue'
 import AddFile from './pages/project/AddFile.vue'
+import AddProject from './pages/project/AddProject.vue'
+import FileData from './pages/project/FileData.vue'
 import Project from './pages/project/Project.vue'
 import ProjectData from './pages/project/ProjectData.vue'
 
@@ -47,8 +48,13 @@ const routes = [
     component: ProjectData,
   },
   {
+    path: '/project/file/data',
+    name: 'File data',
+    component: FileData,
+  },
+  {
     path: '/project/file/add',
-    name: 'Add file',
+    name: 'Add data',
     component: AddFile,
   },
 ]

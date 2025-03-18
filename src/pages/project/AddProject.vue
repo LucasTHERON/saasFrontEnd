@@ -21,7 +21,7 @@ export default {
                 return;
             }
             try {
-                const response = await fetch('http://localhost:8000/api/data/buildings/add', {
+                const response = await fetch('http://localhost:8000/api/data/projects/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
