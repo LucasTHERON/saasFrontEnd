@@ -12,32 +12,86 @@ import ToastService from 'primevue/toastservice';
 
 const app = createApp(App)
 
+//Primvue: si on défini une variable dans semantic en camelCase, on peut la réutiliser sous la forme camel.case
 const MyPreset = definePreset(Aura, {
     semantic: {
         primary: {
-            50: '{blue.50}',
-            100: '{blue.100}',
-            200: '{blue.200}',
-            300: '{blue.300}',
-            400: '{blue.400}',
-            500: '{blue.500}',
-            600: '{blue.600}',
-            700: '{blue.700}',
-            800: '{blue.800}',
-            900: '{blue.900}',
-            950: '{blue.950}'
+            50: '{emerald.50}',
+            100: '{emerald.100}',
+            200: '{emerald.200}',
+            300: '{emerald.300}',
+            400: '{emerald.400}',
+            500: '{emerald.500}',
+            600: '{emerald.600}',
+            700: '{emerald.700}',
+            800: '{emerald.800}',
+            900: '{emerald.900}',
+            950: '{emerald.950}'
         },
-    }
+        formField: {
+            paddingX: '1rem',
+            paddingY: '1rem',
+        },
+        colorScheme: {
+            light: {
+                formField: {
+                    hoverBorderColer: '{primary.color}'
+                }
+            },
+            dark: {
+                formField: {
+                    hoverBorderColer: '{primary.color}'
+                },
+                surface: {
+                    0: '#ffffff',
+                    50: '{zinc.50}',
+                    100: '{zinc.100}',
+                    200: '{zinc.200}',
+                    300: '{zinc.300}',
+                    400: '{zinc.400}',
+                    500: '{zinc.500}',
+                    600: '{zinc.600}',
+                    700: '{zinc.700}',
+                    800: '{zinc.800}',
+                    900: '{zinc.900}',
+                    950: '{zinc.950}'
+                }
+            }
+        },
+    },
+    components: {
+        button: {
+            paddingX: '0.75rem',
+            paddingY: '0.5rem',
+        },
+        menubar: {
+            item: {
+                focus: {
+                    background: null,
+                    color: '{emerald.600}'
+                },
+                icon: {
+                    color: null,
+                    focus: {
+                        color: '{emerald.600}'
+                    }
+                }
+            },
+            justifyContent: 'center',
+        }
+    },
 });
+
 
 app.use(PrimeVue, {
     theme: {
         preset: MyPreset,
         options: {
-            darkModeSelector: '.darkmode-on'
+            darkModeSelector: '.my-app-dark'
         }
     }
 });
+
 
 app.use(createPinia())
 app.use(router)

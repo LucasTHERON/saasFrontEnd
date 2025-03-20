@@ -97,7 +97,10 @@ export default {
     <div v-if="projectData">
         <p>This project name is {{ projectData.name }}!</p>
         <p>Slug id {{ projectData.slug }}!</p>
-        <a :href="'/project?id='+ projectData.slug">Link</a>
+        <a :href="'/project?id='+ projectData.slug">Retour</a>
+        <br><br>
+        <a :href="'project/file/data?id='+ projectData.slug">Project data</a>
+
     </div>
 
     <p v-if="success" style="color:green">{{ success }}</p>

@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../store/auth.js'
 import Menubar from 'primevue/menubar';
+import Button from 'primevue/button';
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -17,6 +18,10 @@ async function logout() {
 
 let items = ref([])
 
+function toggleDarkMode(){
+    document.documentElement.classList.toggle('my-app-dark')
+}
+
 if(authStore.isAuthenticated){
     items = [
         {
@@ -27,7 +32,6 @@ if(authStore.isAuthenticated){
         {
             label: 'Projects',
             icon: 'pi pi-folder',
-            url: '/dashboard', 
             items: [
                 {
                     label: 'Dashboard',
@@ -44,17 +48,21 @@ if(authStore.isAuthenticated){
         {
             label: 'Data',
             icon: 'pi pi-chart-bar',
-            url: '###'
+            url: '/databoard'
         },
         {
-            label: 'Signout',
+            label: 'Log out',
             icon: 'pi pi-sign-out',
-            url: '/login'
+            command: logout
         },
         {
             label: 'Contact',
             icon: 'pi pi-envelope'
-        }
+        },
+        {
+            command: toggleDarkMode,
+            icon: 'pi pi-moon',           
+        }            
     ];
 }else{
     items = [
@@ -77,6 +85,10 @@ if(authStore.isAuthenticated){
             label: 'Contact',
             icon: 'pi pi-envelope',
             url: '/contact'
+        },
+        {
+            command: toggleDarkMode,
+            icon: 'pi pi-moon',           
         }
     ];
 }
@@ -87,7 +99,7 @@ if(authStore.isAuthenticated){
 
 <template>
 
-  <Menubar :model="items" />
+  <Menubar id="main-menu" :model="items" />
 
 </template>
 
@@ -102,4 +114,9 @@ h1{
   justify-content: space-between;
   margin-bottom: 80px;
 }
+
+#main-menu .p-menubar-root-list, .p-menubar-submenu{
+    margin: 0 auto !important;
+}
+
 </style>

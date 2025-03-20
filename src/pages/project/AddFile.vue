@@ -36,7 +36,7 @@ export default {
             success: '',
             error: '',
             fileName: '',
-            fileDescription: ''
+            fileDescription: '',
         }
     },
         methods: {     
@@ -72,11 +72,11 @@ export default {
 </script>
 
 <template>
-    <label>Nom : </label>
-    <input v-model="fileName"></input>
-    <label>Description : </label>
-    <input v-model="fileDescription"></input>
-    <UploadFile v-if="slug" :slug="slug" :fileName="fileName", :fileDescription="fileDescription"/>
+    <label>Nom : </label><br>
+    <input v-model="fileName"></input><br>
+    <label>Description : </label><br>
+    <input v-model="fileDescription"></input><br>
+    <UploadFile v-if="slug" :slug="slug" :fileName="fileName", :fileDescription="fileDescription" :multiple='false' />
     <p v-if="success">
         {{ success }}
     </p>

@@ -1,8 +1,14 @@
 <script>
 import { useRouter } from 'vue-router'
 import { getCSRFToken } from '../../store/auth'
+import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
 
 export default {
+    components: {
+        Button,
+        InputText
+    },
     data(){
         return{
             name: '',
@@ -55,9 +61,11 @@ export default {
 </script>
 
 <template>
-<h1> AJOUTER UN BAT </h1>
-<label>Nom :</label>
-<input v-model="name" />
+<h2>Créer un projet</h2>
+
+
+<InputText name="name" v-model="name" type="text" placeholder="Name" :invalid="false" fluid />
+
 <label>city :</label>
 <input v-model="city" />
 <label>postcode :</label>
@@ -66,7 +74,8 @@ export default {
 <input v-model="direction" />
 <label>description :</label>
 <textarea v-model="description" />
-<button @click="addBuilding">Ajouter</button>
+
+<Button @click="addBuilding" label="Add" />
 <p v-if="success">
     {{ success }}
 </p>

@@ -10,9 +10,10 @@ import SelectButton from 'primevue/selectbutton';
 
 export default {
     props: {
-        slug : '',
-        fileName: '',
-        fileDescription: ''
+        slug : String,
+        fileName: String,
+        fileDescription: String,
+        multiple: true
     },
     components: {
         FileUpload,
@@ -77,7 +78,7 @@ export default {
     <h1> AJOUTER FILE </h1>
     <h4>{{ value }}</h4>
     <FileUpload
-        :customUpload="false" :withCredentials="true" :maxFileSize="1000000"
+        :customUpload="false" :withCredentials="true" :maxFileSize="1000000" :multiple="multiple"
         @before-send="beforeSend" @error="onError" @upload="onUpload"
         url="http://localhost:8000/api/data/files/add" class="uploadSection" name="files" accept=".txt"
     >
@@ -86,8 +87,6 @@ export default {
         </template>
     </FileUpload>
     <button @click="addFile">Ajouter</button> 
-    <h1>{{ fileName }}</h1>
-    <h1>{{ fileDescription }}</h1>
 </div>
 
 

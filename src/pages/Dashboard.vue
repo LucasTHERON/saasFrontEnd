@@ -52,11 +52,22 @@ export default {
 </script>
 
 <template >
-<h1 > DASHBOARD </h1> 
+<br>
+<br>
+<br>
+<h2>DASHBOARD</h2> 
 <div v-if="this.projects">
-    <h1>On essaye d'afficher l'évenement</h1>
-    <DisplayDashboard :projectList="this.projects"/>
+    <DisplayDashboard :projectList="this.projects" :user="authStore.user"/>
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div v-if="authStore.isAuthenticated" >
     <p> Hi there {{ authStore.user?.username }}! </p> 

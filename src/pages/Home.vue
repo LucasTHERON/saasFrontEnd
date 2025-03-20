@@ -30,8 +30,8 @@ export default {
 
 <template >
 
-<h1 > Welcome to the home page </h1> 
-<div v-if = "authStore.isAuthenticated" >
+<h1 style="text-align: center"> Welcome to the home page </h1> 
+<div v-if = "authStore.isAuthenticated" style="text-align: center">
     <p> Hi there {{ authStore.user?.username }}! </p> 
     <p> You are logged in . </p>
     <button @click ="logout"> Logout </button>

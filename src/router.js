@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Databoard from './pages/Databoard.vue'
 import Dashboard from './pages/Dashboard.vue'
 import Home from './pages/Home.vue'
 import Login from './pages/Login.vue'
@@ -31,6 +32,11 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard,
+  },
+  {
+    path: '/databoard',
+    name: 'databoard',
+    component: Databoard,
   },
   {
     path: '/project',
