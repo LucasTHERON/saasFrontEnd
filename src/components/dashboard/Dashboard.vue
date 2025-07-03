@@ -25,7 +25,8 @@ export default {
         SelectButton
     },
     props: {
-        files: null,
+        projectList: Object,
+        user: Object
     },
     data(){
         return{
@@ -34,8 +35,14 @@ export default {
             display: 'Table',
         }
     },
+    setup(){
+        const router = useRouter()
+        return {
+            router
+        }
+    },
     methods: {
-        selectFile(row){
+        selectProject(row){
             console.log(row)
             console.log(typeof(row.data.id))
         },
@@ -52,14 +59,10 @@ export default {
                 return;
             }
 
-        },
-        displayFiles(){
-            console.log(this.files)
         }
     },
     mounted(){
-        console.log("Files :")
-        console.log(this.files)
+        // console.log(this.user)
     }
 }
 
@@ -70,15 +73,13 @@ export default {
 
 <template>
 
-    <button @click="displayFiles">click heres</button>
-
 <SelectButton v-model="display" :options="options" />
 
-<DataTable v-if="display == 'Table'" :value="files"
+<DataTable v-if="display == 'Table'" :value="projectList"
 stripedRows
 selectionMode="single"
 tableStyle="min-width: 50rem"
-@row-click="selectFile"
+@row-click="selectProject"
 @row-dblclick="goToProject"
 >
     <Column filed="id" header="" sortable></Column>
@@ -111,7 +112,7 @@ tableStyle="min-width: 50rem"
     </Card>
 </div>
 
-
+<button @click="() => { console.log(this.projectList) }">Click</button>
 
 
 </template>

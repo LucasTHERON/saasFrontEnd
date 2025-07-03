@@ -39,7 +39,7 @@ export default {
             fileDescription: '',
         }
     },
-        methods: {     
+    methods: {     
         beforeSend(request) {
             if(!this.fileName){
                 this.error = 'Name is required'

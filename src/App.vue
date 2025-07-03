@@ -12,6 +12,6 @@ import Menu from "./components/Menu.vue";
 <style scoped >
   /* You can add any global styles here */
   body{
-    background: #dfdfdf !important
+    background: #f9eed6 !important
   }
 </style>

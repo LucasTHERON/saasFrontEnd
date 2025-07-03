@@ -11,8 +11,6 @@ import SelectButton from 'primevue/selectbutton';
 export default {
     props: {
         slug : String,
-        fileName: String,
-        fileDescription: String,
         multiple: true
     },
     components: {
@@ -40,11 +38,12 @@ export default {
     },
     methods: {     
         beforeSend(request) {
-            if(!this.fileName){
-                this.error = 'Name is required'
-                return
-            }
-            const xhr = request.formData.append('hello', 'world')
+            console.log("this.fileName")
+            console.log(this.fileName)
+            this.error = ''
+            this.success = ''
+
+            // const xhr = request.formData.append('hello', 'world')
             request.formData.append('slug', this.slug)
             request.xhr.open('POST', 'http://localhost:8000/api/data/files/add')
             request.xhr.setRequestHeader('X-CSRFToken',  getCSRFToken())
@@ -65,20 +64,16 @@ export default {
     },
     mounted() {
         console.log(getCSRFToken())
-        console.log(getCSRFToken())
     }
 }
 </script>
 <template>
 
-<SelectButton v-model="value" :options="options" />
 
 
-<div style="border: 1px solid grey; padding: 20px 30px; min-height: 300px">
-    <h1> AJOUTER FILE </h1>
-    <h4>{{ value }}</h4>
+<div>
     <FileUpload
-        :customUpload="false" :withCredentials="true" :maxFileSize="1000000" :multiple="multiple"
+        :customUpload="false" :withCredentials="true" :maxFileSize="1000000" :multiple="true"
         @before-send="beforeSend" @error="onError" @upload="onUpload"
         url="http://localhost:8000/api/data/files/add" class="uploadSection" name="files" accept=".txt"
     >
@@ -86,7 +81,6 @@ export default {
             <span>Drag and drop files to here to upload.</span>
         </template>
     </FileUpload>
-    <button @click="addFile">Ajouter</button> 
 </div>
 
 

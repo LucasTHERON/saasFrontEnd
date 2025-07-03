@@ -60,9 +60,14 @@ if(authStore.isAuthenticated){
             icon: 'pi pi-envelope'
         },
         {
+            label: 'Admin',
+            icon: 'pi pi-user',
+            url: 'http://localhost:8000/admin/'
+        },
+        {
             command: toggleDarkMode,
             icon: 'pi pi-moon',           
-        }            
+        }      
     ];
 }else{
     items = [

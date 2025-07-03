@@ -21,7 +21,7 @@ export default {
         }
     },
     methods: {
-        async addBuilding() {
+        async addProject() {
             if(!this.name){
                 console.error('Il faut ajouter un nom');
                 return;
@@ -46,7 +46,7 @@ export default {
                 if (response.ok) {
                     this.success = 'Le bat a bien été ajouté'
                     setTimeout(() => {
-                        this.$router.push('/dashboard')
+                        this.$router.push('/project/data/update?slug=' + data.slug)
                     }, 1000)
                 } else {
                     this.error = data.error || 'Echec'
@@ -63,19 +63,27 @@ export default {
 <template>
 <h2>Créer un projet</h2>
 
+<Toast />
 
-<InputText name="name" v-model="name" type="text" placeholder="Name" :invalid="false" fluid />
+<Form v-slot="$form" :initialValues="initialValues" :validateOnValueUpdate="false" :validateOnBlur="true" class="flex flex-col gap-4 w-full sm:w-56">
+    <div style="margin-bottom: 1rem;">
+        <InputText name="name" v-model="name" type="text" placeholder="Name"fluid />
+    </div>
+    <div style="margin-bottom: 1rem;">
+        <InputText name="city" v-model="city" type="text" placeholder="City"fluid />
+    </div>
+        <div style="margin-bottom: 1rem;">
+        <InputText name="postcode" v-model="postcode" type="text" placeholder="Postcode"fluid />
+    </div>
+        <div style="margin-bottom: 1rem;">
+        <InputText name="direction" v-model="direction" type="text" placeholder="Direction"fluid />
+    </div>
+    <div style="margin-bottom: 1rem;">
+        <InputText name="description" v-model="description" type="text" placeholder="Description"fluid />
+    </div>
+    <Button @click="addProject" label="Add project" />
+</Form>
 
-<label>city :</label>
-<input v-model="city" />
-<label>postcode :</label>
-<input v-model="postcode" />
-<label>direction :</label>
-<input v-model="direction" />
-<label>description :</label>
-<textarea v-model="description" />
-
-<Button @click="addBuilding" label="Add" />
 <p v-if="success">
     {{ success }}
 </p>

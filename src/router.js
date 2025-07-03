@@ -1,67 +1,90 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Databoard from './pages/Databoard.vue'
-import Dashboard from './pages/Dashboard.vue'
-import Home from './pages/Home.vue'
-import Login from './pages/Login.vue'
-import Register from './pages/Register.vue'
+import DataboardPage from './pages/DataboardPage.vue'
+import DashboardPageOld from './pages/DashboardOldPage.vue'
+import HomePage from './pages/HomePage.vue'
+import LoginPage from './pages/LoginPage.vue'
+import RegisterPage from './pages/RegisterPage.vue'
 
-import AddFile from './pages/project/AddFile.vue'
-import AddProject from './pages/project/AddProject.vue'
-import FileData from './pages/project/FileData.vue'
-import Project from './pages/project/Project.vue'
-import ProjectData from './pages/project/ProjectData.vue'
+import AddFilePage from './pages/project/AddFilePage.vue'
+import AddProjectPage from './pages/project/AddProjectPage.vue'
+import FileDataPage from './pages/project/FileDataPage.vue'
+import ProjectPage from './pages/project/ProjectPage.vue'
+import ProjectDataPage from './pages/project/ProjectDataPage.vue'
+import UpdateProjectDataPage from './pages/project/UpdateProjectDataPage.vue'
+
+
+
+
+
+import Dashboard from './pages/DashboardPage.vue'
+
+
 
 
 const routes = [
+
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
+
+
+
   {
     path: '/',
     name: 'home',
-    component: Home,
+    component: HomePage,
   },
   {
     path: '/login',
     name: 'login',
-    component: Login,
+    component: LoginPage,
   },
   {
     path: '/register',
     name: 'register',
-    component: Register,
+    component: RegisterPage,
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard,
+    path: '/old/dashboard',
+    name: 'olf dashboard',
+    component: DashboardPageOld,
   },
   {
     path: '/databoard',
     name: 'databoard',
-    component: Databoard,
+    component: DataboardPage,
   },
   {
     path: '/project',
     name: 'Project',
-    component: Project,
+    component: ProjectPage,
   },
   {
     path: '/project/add',
     name: 'Add project',
-    component: AddProject,
+    component: AddProjectPage,
   },
   {
     path: '/project/data',
     name: 'Project data',
-    component: ProjectData,
+    component: ProjectDataPage,
+  },
+  {
+    path: '/project/data/update',
+    name: 'Update project data',
+    component: UpdateProjectDataPage,
   },
   {
     path: '/project/file/data',
     name: 'File data',
-    component: FileData,
+    component: FileDataPage,
   },
   {
     path: '/project/file/add',
     name: 'Add data',
-    component: AddFile,
+    component: AddFilePage,
   },
 ]
 

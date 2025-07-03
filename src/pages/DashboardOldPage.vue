@@ -3,9 +3,10 @@ import { useAuthStore } from '../store/auth.js'
 import { useRouter } from 'vue-router'
 import DisplayDashboard from '../components/DisplayDashboard.vue'
 
+
 export default {
     components: {
-        DisplayDashboard
+        DisplayDashboard,
     },
     data(){
         return{
@@ -51,10 +52,8 @@ export default {
 
 </script>
 
-<template >
-<br>
-<br>
-<br>
+<template>
+
 <h2>DASHBOARD</h2> 
 <div v-if="this.projects">
     <DisplayDashboard :projectList="this.projects" :user="authStore.user"/>

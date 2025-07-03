@@ -74,17 +74,6 @@ export default {
             slug
         }
     },
-    methods: {
-       hello(){
-        console.log('hello')
-       }
-    },
-    mounted(){
-        // console.log(this.projectData)
-        // this.getProject();
-        console.log("Mounted")
-
-    }
 }
 
 

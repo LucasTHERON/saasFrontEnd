@@ -1,13 +1,76 @@
+<script>
+
+import Chart from 'primevue/chart';
+import pdf from "../files/Déclaration de revenus 2024.pdf";
+import txt from "../files/hello.txt";
+import img from "../assets/chart_types.png";
+
+export default {
+    components: {
+        Chart
+    },
+    data(){
+        return{
+            barData: {
+                labels: ['January', 'February', 'March'],
+                datasets: [{ data: [40, 20, 12] }]
+            },
+            barOptions: {
+                responsive: true
+            },
+            pieData: {
+                labels: ['A', 'B', 'C'],
+                datasets: [{ data: [540, 325, 702]}]
+            },
+            lineData: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{ data: [38, 20, 18, 15, 28, 33, 25] }]
+            },
+            src: '../files/Déclaration de revenus 2024.pdf',
+            pdf: pdf,
+            txt: txt,
+            img: img
+        }
+    },
+    methods: {
+       
+    },
+}
+</script>
 <template>
 <br><br><br>
+
     <div class="card">
-        <Chart type="bar" :data="chartData" :options="chartOptions" class="h-[30rem]" :height="450"  />
+        <Chart type="bar" :data="barData" :options="barOptions" class="h-[30rem]" :height="200"  />
+    </div>
+    <div class="card">
+        <Chart type="pie" :data="pieData" class="w-full md:w-[30rem]"/>
+    </div>
+    <div class="card">
+        <Chart type="line" :data="lineData" class="h-[30rem]" :height="200"  />
+    </div>
+    <div>
+        <img src="../assets/chart_types.png">
+    </div>
+
+    <div>
+        <embed style="width: 100%; height: 80vh;" scrolling="true" :src="pdf" />
+    </div>
+    <div style="overflow: hidden">
+        <img :src="img" />
+        <embed style="" scrolling="true" :src="img" />
+
+    </div>
+    <div>
+        <embed  scrolling="true" :src="txt" />
     </div>
 </template>
 
-<script setup>
+<!-- <script setup>
 import { ref, onMounted } from "vue";
 import Chart from 'primevue/chart';
+
+import { Bar } from 'vue-chartjs'
 
 
 onMounted(() => {
@@ -79,5 +142,4 @@ const setChartOptions = () => {
             }
         }
     };
-}
-</script>
+} -->

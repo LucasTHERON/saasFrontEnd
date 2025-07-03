@@ -65,13 +65,13 @@ export default {
     setup(){
         const toast = useToast();
         return{
-            toast
+            toast,
         }
     },
     methods: {
         async register() {
             try {
-                const response = await fetch('http://localhost:8000/api/register', {
+                const response = await fetch(import.meta.env.VITE_API_BASE_URL + 'register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export default {
             if(!this.email){ this.fieldError.email = true }else{ this.fieldError.email = false }
             if(!this.password){ this.fieldError.password = true }else{ this.fieldError.password = false }
 
-            const specialChars =/[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/;
+            const specialChars =/[`!@#$%^&*()_\-+=\[\]{};':"\\|,.\/?~ ]/;
             if(this.fieldError.last_name == false && this.fieldError.first_name == false && this.fieldError.email == false && this.fieldError.password == false){
                 if(this.password.length < 12 || !/[A-Z]/.test(this.password) || !/[a-z]/.test(this.password) || !specialChars.test(this.password) || !/\d/.test(this.password)){
                     this.error = "Password should be at least 12 characters, contain one uppercase, one lowercase character, one number and one symbol character";
@@ -118,6 +118,10 @@ export default {
                 this.error = "Some fields are empty";
             }
         }
+    },
+    mounted() {
+        // import.meta.env.VITE_API_BASE_URL
+        console.log(import.meta.env.VITE_API_BASE_URL + 'register');
     }
 }
 </script>

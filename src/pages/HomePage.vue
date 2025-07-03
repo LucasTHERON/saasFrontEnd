@@ -1,8 +1,24 @@
 <script>
 import { useAuthStore } from '../store/auth.js'
 import { useRouter } from 'vue-router'
+import { Bar } from 'vue-chartjs'
+
 
 export default {
+    components: {
+        Bar
+    },
+    data(){
+        return {
+            chartData: {
+                labels: ['January', 'February', 'March'],
+                datasets: [{ data: [40, 20, 12] }]
+            },
+            chartOptions: {
+                responsive: true
+            }
+        }
+    },
     setup() {
         const authStore = useAuthStore()
         const router = useRouter()
@@ -23,6 +39,8 @@ export default {
     },
     async mounted() {
         await this.authStore.fetchUser()
+        console.log(import.meta.env.VITE_MY_ENV_VARIABLE)
+        console.log(this.chartData)
     }
 }
 
